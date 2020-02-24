@@ -1,0 +1,39 @@
+{
+    "compilerOptions": {
+      "target": "es2018",
+      "module": "commonjs",
+      "allowJs": true,
+      "checkJs": true,
+      "outDir": "./build",
+      "sourceMap": true,
+      "strict": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "moduleResolution": "node",
+      "skipLibCheck": true,
+      "allowUnreachableCode": false,
+      "allowUnusedLabels": false,
+      "declaration": true,
+      "forceConsistentCasingInFileNames": true,
+      "lib": ["es2018"],
+      "noEmitOnError": true,
+      "noFallthroughCasesInSwitch": true,
+      "noImplicitReturns": true,
+      "pretty": true,
+    },
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "node_modules"
+    ],
+    "lib": [
+      "es6",
+      "es5",
+      "es2017",
+      "es2015.symbol"
+    ]
+  }
+  

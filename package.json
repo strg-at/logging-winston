@@ -1,0 +1,37 @@
+{
+  "name": "@strg/logging-winston",
+  "version": "1.0.0",
+  "description": "pre defined and formated error log configuration for Winston 3",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf build && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.strg.at/projects/LIBNODE/logging-winston"
+  },
+  "keywords": [
+    "logging",
+    "winston",
+    "winston transport",
+    "winston format",
+    "strg logging",
+    "json logging",
+    "winston json",
+    "strg",
+    "kubernetes logging"
+  ],
+  "author": "STRG.",
+  "license": "UNLICENSED",
+  "peerDependencies": {
+    "winston": ">=3.2.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.8.2",
+    "winston": "^3.2.1",
+    "@types/node": "^13.7.4",
+    "logform": "^2.1.2"
+  },
+  "dependencies": {}
+}
