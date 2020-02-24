@@ -1,5 +1,5 @@
 # @strg/logging-winston
-This library provides a preconfigured winston logger that can be used in any typescript or node project
+This library provides a preconfigured winston logger that can be used in any typescript or node project it is based on winston version 3.
 
 ## Getting Started
 
@@ -29,6 +29,7 @@ logger.info(`${'hello world'}`)
 |:---|:------------|:--------|
 | **NODE_LOG_FORMAT** | _`SIMPLE`_, _`JSON`_ | `JSON` |
 | **NODE_LOG_LEVEL** | _`fatal`_,  _`error`_, _`warn`_, _`info`_, _`trace`_, _`debug`_ | `info` |
+
 <br>
 <br>
 
