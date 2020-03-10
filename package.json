@@ -1,6 +1,6 @@
 {
   "name": "@strg/logging-winston",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "pre defined and formated error log configuration for Winston 3",
   "main": "build/index.js",
   "scripts": {
@@ -30,9 +30,9 @@
   "devDependencies": {
     "typescript": "^3.8.2",
     "winston": "^3.2.1",
-    "logform": "^2.1.2"
+    "logform": "^2.1.2",
+    "@types/node": "^13.7.4"
   },
   "dependencies": {
-    "@types/node": "^13.7.4"
   }
 }

@@ -1,5 +1,5 @@
 # @strg/logging-winston
-This library provides a preconfigured winston logger that can be used in any typescript or node project it is based on winston version 3.
+This library provides a preconfigured winston logger that can be used in any typescript or node project it is based on winston3.
 
 ## Getting Started
 
@@ -11,7 +11,7 @@ This library provides a preconfigured winston logger that can be used in any typ
 ### Installing the library
 
 ```bash
-npm install @strg/logging-winston
+npm install winston @strg/logging-winston
 ```
 
 ### Using the client library
