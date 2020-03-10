@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.strg.at/projects/LIBNODE/repos/logging-winston"
+    "url": "git+https://github.com/strg-at/logging-winston.git"
   },
   "keywords": [
     "logging",
@@ -33,6 +33,9 @@
     "logform": "^2.1.2",
     "@types/node": "^13.7.4"
   },
-  "dependencies": {
-  }
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/strg-at/logging-winston/issues"
+  },
+  "homepage": "https://github.com/strg-at/logging-winston#readme"
 }
