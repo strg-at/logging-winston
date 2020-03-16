@@ -24,16 +24,14 @@
   ],
   "author": "STRG.",
   "license": "UNLICENSED",
-  "peerDependencies": {
-    "winston": ">=3.2.1"
-  },
   "devDependencies": {
-    "typescript": "^3.8.2",
-    "winston": "^3.2.1",
+    "@types/node": "^13.7.4",
     "logform": "^2.1.2",
-    "@types/node": "^13.7.4"
+    "typescript": "^3.8.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "winston": "^3.2.1"
+  },
   "bugs": {
     "url": "https://github.com/strg-at/logging-winston/issues"
   },
