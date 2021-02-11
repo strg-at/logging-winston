@@ -23,7 +23,7 @@
     "kubernetes logging"
   ],
   "author": "STRG.",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^13.7.4",
     "logform": "^2.1.2",
