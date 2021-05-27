@@ -19,10 +19,29 @@ const displayStackSimple = winston.format((info: TransformableInfo) => {
   return info
 })
 
+const addIndent = (str: string, indentLevel: number): string => {
+  return str.split("\n").map(item => `${'  '.repeat(indentLevel)}${item}`).join("\n")
+}
+
+const mergeStacks = (err: any) => {
+  if (!(err.message instanceof Error)) {
+    return ''
+  }
+  let error = err.message
+  let stack = `${error.stack}`
+  let indent = 1
+  while (error && error.error && error.error instanceof Error && error.error.stack) {
+    stack = `${stack}\n`
+    error = error.error
+    stack = `${stack}${addIndent(error.stack, indent++)}\n`
+  }
+  return stack
+}
+
 const displayStackJson = winston.format((info: any) => {
   if (info.level === 'error' && info.message && info.message instanceof Error) {
     return Object.assign({}, info, {
-      stack: info.message.stack,
+      stack: mergeStacks(info),
       message: info.message.message
     })
   } else if (info.level === 'error' && info instanceof Error) {
@@ -76,3 +95,4 @@ process.on('unhandledRejection', (reason: {} | null | undefined, promise: Promis
 })
 
 export { logger }
+
