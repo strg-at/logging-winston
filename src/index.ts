@@ -20,10 +20,15 @@ const displayStackSimple = winston.format((info: TransformableInfo) => {
 })
 
 const displayStackJson = winston.format((info: any) => {
-  if (info.level === 'error' && info.message?.error instanceof Error) {
+  if (info.level === 'error' && info.message && info.message instanceof Error) {
     return Object.assign({}, info, {
-      stack: info.message.error.stack,
-      message: info.message.error.message
+      stack: info.message.stack,
+      message: info.message.message
+    })
+  } else if (info.level === 'error' && info instanceof Error) {
+    return Object.assign({}, info, {
+      stack: info.stack,
+      message: info.message
     })
   }
   return info
