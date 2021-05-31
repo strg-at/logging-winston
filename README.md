@@ -29,6 +29,7 @@ logger.info(`${'hello world'}`)
 |:---|:------------|:--------|
 | **NODE_LOG_FORMAT** | _`SIMPLE`_, _`JSON`_ | `JSON` |
 | **NODE_LOG_LEVEL** | _`fatal`_,  _`error`_, _`warn`_, _`info`_, _`trace`_, _`debug`_ | `info` |
+| **NODE_LOG_STACK_KEY** | the key of the stacktrace (require `NODE_LOG_FORMAT=JSON`) | `stack_trace` |
 
 <br>
 <br>
