@@ -4,6 +4,7 @@ import { Format, TransformableInfo } from 'logform'
 
 const NODE_LOG_FORMAT: string = process.env.NODE_LOG_FORMAT && process.env.NODE_LOG_FORMAT.toLowerCase() === 'simple' ? 'simple' : 'json'
 const NODE_LOG_LEVEL: string = process.env.NODE_LOG_LEVEL ? process.env.NODE_LOG_LEVEL : 'info'
+const NODE_LOG_STACK_KEY: string = process.env.NODE_LOG_STACK_KEY ? process.env.NODE_LOG_STACK_KEY.toString() : 'stack_trace'
 
 winston.addColors({
   fatal: 'magenta',
@@ -38,20 +39,24 @@ const mergeStacks = (err: any) => {
   return stack
 }
 
+const getStackObject = (info: any) => {
+  const result: {  [key: string]: any; } = {}
+  result[NODE_LOG_STACK_KEY] = mergeStacks(info)
+  return result
+}
+
 const displayStackJson = winston.format((info: any) => {
   if (info.level === 'error' && info.message && info.message instanceof Error) {
-    return Object.assign({}, info, {
-      stack: mergeStacks(info),
+    return Object.assign({}, info, getStackObject(info), {
       message: info.message.message
     })
   } else if (info.level === 'error' && info instanceof Error) {
-    return Object.assign({}, info, {
-      stack: info.stack,
+    return Object.assign({}, info, getStackObject(info), {
       message: info.message
     })
   }
   return info
-});
+})
 
 const jsonFormat: Format = winston.format.combine(
   winston.format.metadata(),
