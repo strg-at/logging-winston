@@ -26,6 +26,9 @@ const addIndent = (str: string, indentLevel: number): string => {
 
 const mergeStacks = (err: any) => {
   if (!(err.message instanceof Error)) {
+    if (err instanceof Error) {
+      return `${err.stack}`
+    }
     return ''
   }
   let error = err.message
