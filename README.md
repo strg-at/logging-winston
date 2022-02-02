@@ -1,6 +1,6 @@
 [![Version npm](https://img.shields.io/npm/v/@strg/logging-winston.svg?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/@strg/logging-winston)
 [![Renovate Status](https://img.shields.io/badge/renovate-enabled-brightgreen?logo=renovatebot&style=for-the-badge)](https://app.renovatebot.com/dashboard)
-[![License](https://img.shields.io/github/license/strg-at/logging-winston?style=for-the-badge)(https:)
+[![License](https://img.shields.io/github/license/strg-at/logging-winston?style=for-the-badge)](https://github.com/strg-at/logging-winston/blob/master/LICENSE)
 [![Lines of code](https://img.shields.io/tokei/lines/github/strg-at/logging-winston?style=for-the-badge&color=brightgreen&label=lines&logo=codefactor&logoColor=white)](https://github.com/strg-at/logging-winston/graphs/contributors)
 
 # @strg/logging-winston
