@@ -1,0 +1,6 @@
+.github/*
+.git
+.gitignore
+node-modules
+.vscode
+.nvmrc
