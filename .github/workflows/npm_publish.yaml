@@ -1,7 +1,9 @@
-name: On Release | Publish Package to npmjs
+name: On Tag | Publish Package to npmjs
 on:
-  release:
-    types: [created]
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - "*.*.*"
 jobs:
   build:
     runs-on: ubuntu-latest
