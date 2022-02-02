@@ -1,3 +1,7 @@
+[![Version npm](https://img.shields.io/npm/v/@strg/logging-winston.svg?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/@strg/logging-winston)
+[![Renovate Status](https://img.shields.io/badge/renovate-enabled-brightgreen?logo=renovatebot&style=for-the-badge)](https://app.renovatebot.com/dashboard)
+[![Lines of code](https://img.shields.io/tokei/lines/github/strg-at/logging-winston?style=for-the-badge&color=brightgreen&label=lines&logo=codefactor&logoColor=white)](https://github.com/strg-at/logging-winston/graphs/contributors)
+
 # @strg/logging-winston
 This library provides a preconfigured winston logger that can be used in any typescript or node project it is based on winston3.
 
