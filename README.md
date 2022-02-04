@@ -26,7 +26,6 @@ logger.info(`${'hello world'}`)
 
 ```
 
-
 ### ENV
 
 |    | Description | Default |
