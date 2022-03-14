@@ -1,19 +1,46 @@
 {
-  "enabled": true,
-  "semanticCommits": "enabled",
-  "dependencyDashboard": true,
-  "dependencyDashboardTitle": ":robot: Renovate Dashboard",
-  "suppressNotifications": ["prIgnoreNotification"],
-  "rebaseWhen": "conflicted",
-  "labels": ["dependencies"],
+  extends: [
+    "config:base"
+  ],
+  enabled: true,
+  semanticCommits: "enabled",
+  dependencyDashboard: true,
+  dependencyDashboardTitle: ":robot: Renovate Dashboard",
+  suppressNotifications: ["prIgnoreNotification"],
+  rebaseWhen: "conflicted",
+  labels: ["dependencies"],
   "packageRules": [
     {
       "matchPackagePatterns": ["eslint"],
       "labels": ["linting"]
     },
     {
-      "matchDepTypes": ["optionalDependencies"],
-      "addLabels": ["optional"]
-    }
-  ]
+      matchDepTypes: ["devDependencies"],
+      addLabels: ["development"]
+    },
+    {
+      matchDepTypes: ["optionalDependencies"],
+      addLabels: ["optional"]
+    },
+    {
+      matchDepTypes: ["peerDependencies"],
+      addLabels: ["peer"]
+    },
+    {
+      matchDatasources: ["npm"],
+      matchUpdateTypes: ["patch"],
+      labels: ["dependency/patch"],
+    },
+    {
+      matchDatasources: ["npm"],
+      matchUpdateTypes: ["minor"],
+      labels: ["dependency/minor"],
+    },
+    {
+      matchDatasources: ["npm"],
+      matchUpdateTypes: ["major"],
+      labels: ["dependency/major"],
+    },
+  ],
+  timezone: "Europe/Vienna",
 }
