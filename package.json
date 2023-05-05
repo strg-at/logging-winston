@@ -27,7 +27,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "18.16.2",
-    "logform": "2.4.0",
+    "logform": "2.5.1",
     "typescript": "5.0.4"
   },
   "dependencies": {
