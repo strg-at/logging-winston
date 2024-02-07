@@ -1,6 +1,5 @@
 import winston = require('winston')
-import { Format, TransformableInfo } from 'logform'
-
+import { Format } from 'logform'
 
 const NODE_LOG_FORMAT: string = process.env.NODE_LOG_FORMAT && process.env.NODE_LOG_FORMAT.toLowerCase() === 'simple' ? 'simple' : 'json'
 const NODE_LOG_LEVEL: string = process.env.NODE_LOG_LEVEL ? process.env.NODE_LOG_LEVEL : 'info'
@@ -15,31 +14,66 @@ winston.addColors({
   debug: 'grey',
 })
 
-const displayStackSimple = winston.format((info: TransformableInfo) => {
-  info.message = info.stack ? info.stack : info.message
-  return info
+const displayStackSimple = winston.format((info: any) => {
+  if (info.level !== 'error') {
+    return info
+  }
+
+  let message = ''
+  let level = 1
+  if (info instanceof Error) {
+    const stacks = mergeStacks(info)
+    message = addIndent(stacks.stack, level)
+    if (stacks.cause) {
+      level++
+      let currentCause = stacks.cause
+      while (currentCause) {
+        if (typeof currentCause === 'string') {
+          message = message + `${currentCause}`
+          break;
+        }
+        message += `\n${addIndent(currentCause.stack, level)}`
+        if (!currentCause.cause) {
+          break
+        }
+        currentCause = currentCause.cause
+      }
+    }
+  }
+
+  return{
+    ...info,
+    message
+  }
 })
 
 const addIndent = (str: string, indentLevel: number): string => {
   return str.split("\n").map(item => `${'  '.repeat(indentLevel)}${item}`).join("\n")
 }
 
-const mergeStacks = (err: any) => {
-  if (!(err.message instanceof Error)) {
-    if (err instanceof Error) {
-      return `${err.stack}`
+type Stacks = {
+  message: string
+  stack: string
+  cause?: Stacks | string
+}
+
+const mergeStacks = (err: Error): Stacks => {
+  const stack = err.stack || ''
+
+  if (!(err.cause instanceof Error) && typeof err.cause !== 'string') {
+    return {
+      message: err.message,
+      stack: stack,
     }
-    return ''
   }
-  let error = err.message
-  let stack = `${error.stack}`
-  let indent = 1
-  while (error && error.error && error.error instanceof Error && error.error.stack) {
-    stack = `${stack}\n`
-    error = error.error
-    stack = `${stack}${addIndent(error.stack, indent++)}\n`
+
+  const cause = (err.cause && err.cause instanceof Error) ? mergeStacks(err.cause) : err.cause ?? ''
+
+  return {
+    message: err.message,
+    stack: stack,
+    cause: cause
   }
-  return stack
 }
 
 const getStackObject = (info: any) => {
@@ -49,15 +83,24 @@ const getStackObject = (info: any) => {
 }
 
 const displayStackJson = winston.format((info: any) => {
-  if (info.level === 'error' && info.message && info.message instanceof Error) {
-    return Object.assign({}, info, getStackObject(info), {
-      message: info.message.message
-    })
-  } else if (info.level === 'error' && info instanceof Error) {
-    return Object.assign({}, info, getStackObject(info), {
-      message: info.message
-    })
+  if (info.level !== 'error') {
+    return info
   }
+
+  if (info instanceof Error) {
+    return {
+      ...info,
+      ...getStackObject(info)
+    }
+  }
+
+  if (info.message && info.message instanceof Error) {
+    return {
+      ...info,
+      ...getStackObject(info.message)
+    }
+  }
+
   return info
 })
 
