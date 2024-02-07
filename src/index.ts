@@ -1,6 +1,12 @@
 import winston = require('winston')
 import { Format } from 'logform'
 
+type Stacks = {
+  message: string
+  stack: string
+  cause?: Stacks | string
+}
+
 const NODE_LOG_FORMAT: string = process.env.NODE_LOG_FORMAT && process.env.NODE_LOG_FORMAT.toLowerCase() === 'simple' ? 'simple' : 'json'
 const NODE_LOG_LEVEL: string = process.env.NODE_LOG_LEVEL ? process.env.NODE_LOG_LEVEL : 'info'
 const NODE_LOG_STACK_KEY: string = process.env.NODE_LOG_STACK_KEY ? process.env.NODE_LOG_STACK_KEY.toString() : 'stack_trace'
@@ -49,12 +55,6 @@ const displayStackSimple = winston.format((info: any) => {
 
 const addIndent = (str: string, indentLevel: number): string => {
   return str.split("\n").map(item => `${'  '.repeat(indentLevel)}${item}`).join("\n")
-}
-
-type Stacks = {
-  message: string
-  stack: string
-  cause?: Stacks | string
 }
 
 const mergeStacks = (err: Error): Stacks => {
