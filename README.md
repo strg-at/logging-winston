@@ -25,6 +25,12 @@ import {logger} from '@strg/logging-winston'
 logger.info(`${'hello world'}`)
 
 ```
+### Error "cause"
+For all errors with a parent "cause", messages and stacktrace will be displayed hierarchically.
+```javascript
+const error = new Error('Child Error', { cause: new Error('Parent Error')})
+logger.error(error) // will display stacktrace and original message for child and parent errors
+```
 
 ### ENV
 
