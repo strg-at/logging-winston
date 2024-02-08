@@ -1,6 +1,6 @@
 {
   "name": "@strg/logging-winston",
-  "version": "2.0.13",
+  "version": "3.0.1",
   "description": "pre defined and formated error log configuration for Winston 3",
   "main": "build/index.js",
   "scripts": {
