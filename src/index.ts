@@ -25,9 +25,9 @@ const displayStackSimple = winston.format((info: any) => {
     return info
   }
 
-  let message = ''
-  let level = 1
   if (info instanceof Error) {
+    let message = ''
+    let level = 1
     const stacks = mergeStacks(info)
     message = addIndent(stacks.stack, level)
     if (stacks.cause) {
@@ -45,12 +45,14 @@ const displayStackSimple = winston.format((info: any) => {
         currentCause = currentCause.cause
       }
     }
+
+    return {
+      ...info,
+      message
+    }
   }
 
-  return{
-    ...info,
-    message
-  }
+  return info
 })
 
 const addIndent = (str: string, indentLevel: number): string => {
